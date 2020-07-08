@@ -1,0 +1,17 @@
+spring:
+  applicaton:
+    name: finex-orderbook
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${FINEX_DISCOVERY_URI}
+  instance:
+    preferIpAddress: true
+    ip-address: ${FINEX_DISCOVERY_CLIENT_IP}
+  fetchRegistry: true

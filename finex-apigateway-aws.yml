@@ -1,0 +1,58 @@
+spring:
+  applicaton:
+    name: finex-apigateway
+server:
+  port: 8080
+
+zuul:
+  routes:
+    finex-product-service-internal-api:
+      path: /finex/internal/api/product/**
+      serviceId: finex-product
+      stripPrefix: false
+    finex-product-service-external-api:
+      path: /finex/api/product/**
+      serviceId: finex-product
+      stripPrefix: false
+    finex-participant-service-internal-api:
+      path: /finex/internal/api/participant/**
+      serviceId: finex-participant
+      stripPrefix: false
+    finex-participant-service-external-api:
+      path: /finex/api/participant/**
+      serviceId: finex-participant
+      stripPrefix: false
+    finex-order-service-internal-api:
+      path: /finex/internal/api/order/**
+      serviceId: finex-order
+      stripPrefix: false
+    finex-order-service-external-api:
+      path: /finex/api/order/**
+      serviceId: finex-order
+      stripPrefix: false
+    finex-orderbook-service-internal-api:
+      path: /finex/internal/api/orderBook/**
+      serviceId: finex-orderbook
+      stripPrefix: false
+    finex-trade-service-internal-api:
+      path: /finex/internal/api/trade/**
+      serviceId: finex-trade
+      stripPrefix: false
+    finex-trade-service-external-api:
+      path: /finex/api/trade/**
+      stripPrefix: false
+      serviceId: finex-trade
+  host:
+    socket-timeout-millis: 30000
+
+ribbon:
+  ReadTimeout: 60000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${FINEX_DISCOVERY_URI}
+  instance:
+    preferIpAddress: true
+    ip-address: ${FINEX_DISCOVERY_CLIENT_IP}
+  fetchRegistry: true
