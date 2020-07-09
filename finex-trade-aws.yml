@@ -21,7 +21,7 @@ eureka:
     serviceUrl:
       defaultZone: ${FINEX_DISCOVERY_URI}
   instance:
-    preferIpAddress: true
-    ip-address: ${FINEX_DISCOVERY_CLIENT_IP}
+    preferIpAddress: false
+    hostname: ${FINEX_DISCOVERY_CLIENT_HOSTNAME}
   fetchRegistry: true
 
