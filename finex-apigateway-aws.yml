@@ -2,7 +2,12 @@ spring:
   applicaton:
     name: finex-apigateway
 server:
-  port: 8080
+  port: 8443
+  ssl: 
+    enabled: true
+    key-store: ${TLS_KEYSTORE}
+    key-store-password: ${TLS_KEYSTORE_PASSWORD}
+    key-store-type: PKCS12
 
 zuul:
   routes:

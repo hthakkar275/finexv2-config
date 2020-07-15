@@ -2,7 +2,7 @@ spring:
   applicaton:
     name: finex-trade
   datasource:
-    url: jdbc:postgresql://finex-database.ciejfzld0efh.us-east-2.rds.amazonaws.com/finex
+    url: jdbc:postgresql://127.0.0.1/finex
     username: postgres
     password: postgres
   jpa:
@@ -14,7 +14,12 @@ spring:
   database-platform: org.hibernate.dialect.PostgreSQL9Dialect
 
 server:
-  port: 8080
+  port: 8443
+  ssl: 
+    enabled: true
+    key-store: ${TLS_KEYSTORE}
+    key-store-password: ${TLS_KEYSTORE_PASSWORD}
+    key-store-type: PKCS12
 
 eureka:
   client:
