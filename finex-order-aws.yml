@@ -2,9 +2,15 @@ spring:
   applicaton:
     name: finex-order
   datasource:
-    url: jdbc:postgresql://127.0.0.1/finex
+    url: jdbc:postgresql://finex-database.ciejfzld0efh.us-east-2.rds.amazonaws.com/finex
     username: postgres
     password: postgres
+    hikari:
+      minimumIdle: 1
+      maximumPoolSize: 3
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 1800000
   jpa:
     generate: true
     properties:
@@ -15,7 +21,7 @@ spring:
 
 server:
   port: 8443
-  ssl: 
+  ssl:
     enabled: true
     key-store: ${TLS_KEYSTORE}
     key-store-password: ${TLS_KEYSTORE_PASSWORD}
@@ -23,11 +29,17 @@ server:
 
 eureka:
   client:
+    fetch-registry: true
+    securePortEnabled: true
     serviceUrl:
       defaultZone: ${FINEX_DISCOVERY_URI}
   instance:
+    nonSecurePortEnabled: false
+    securePortEnabled: true
+    securePort: 443
+    statusPageUrl: https://${FINEX_DISCOVERY_CLIENT_HOSTNAME}:${eureka.instance.securePort}/actuator/info
+    healthCheckUrl: https://${FINEX_DISCOVERY_CLIENT_HOSTNAME}:${eureka.instance.securePort}/actuator/health
     preferIpAddress: false
     hostname: ${FINEX_DISCOVERY_CLIENT_HOSTNAME}
-  fetchRegistry: true
-
+  
 
