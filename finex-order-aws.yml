@@ -1,6 +1,12 @@
 spring:
   applicaton:
     name: finex-order
+  zipkin:
+    baseUrl: ${ZIPKIN_URI}
+    sender:
+      type: ${ZIPKIN_SENDER_TYPE}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
   datasource:
     url: jdbc:postgresql://finex-database.ciejfzld0efh.us-east-2.rds.amazonaws.com/finex
     username: postgres

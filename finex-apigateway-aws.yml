@@ -1,6 +1,12 @@
 spring:
   applicaton:
     name: finex-apigateway
+  zipkin:
+    baseUrl: ${ZIPKIN_URI}
+    sender:
+      type: ${ZIPKIN_SENDER_TYPE}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
 server:
   port: 8443
   ssl:
